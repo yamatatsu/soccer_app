@@ -74,3 +74,19 @@
   - 単体テスト(model)
   - 機能テスト(request)
   - 統合テスト(system)
+## 開発環境構築
+
+### 準備
+
+1. dockerをインストールする  
+   https://docs.docker.com/get-docker/
+1. build docker image  
+   `docker-compose build`
+1. create database  
+   `docker-compose run --rm web rails db:create`
+
+### サーバーの起動
+`docker-compose up`
+
+### db migration
+`docker-compose run --rm web rails db:migrate RAILS_ENV=development`

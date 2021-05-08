@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  db:
+    image: mariadb:10.4
+    volumes:
+      - db-volume:/var/lib/mysql
+      - ./tmp/db_logs:/var/log/mysql
+    environment:
+      MYSQL_USER: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      LANG: ja_JP.UTF-8
+      LANGUAGE: ja_JP:ja
+      TZ: "Asia/Tokyo"
+    platform: linux/x86_64
+  web:
+    build: .
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+
+volumes:
+  db-volume:
